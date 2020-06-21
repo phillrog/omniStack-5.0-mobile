@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
 
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import api from '../services/tweets';
 
-function Timeline (props)  {
-    const { navigation, route  } = props;
+export default class Timeline extends Component {
+    state = {
+        tweets : []
+    };
 
-        React.useLayoutEffect(() => {
-            navigation.setOptions({ 
+    async componentDidMount() {
+        const response = await api.get(api.endpoints.tweets); 
+        this.setState({ tweets: response.data });
+    }
 
-                title: "Início",
-                headerRight: () => (
-                    <TouchableOpacity onPress={() => {}}>
-                        <Icon 
-                            style={{ marginRight: 20}}
-                            name="add-circle-outline"
-                            size={32}
-                            color="#4BB0EE" />
-                    </TouchableOpacity>
-                )
-             });
-          }, [navigation, route]);
-      
-        return (<View ><Text>SOU A TIMELINE</Text></View> );
-    
+    render() {
+        const { navigation  } = this.props;
+
+        navigation.setOptions({ title: "Início",
+            headerRight: () => (
+                <TouchableOpacity onPress={() => {}}>
+                    <Icon 
+                        style={{ marginRight: 20}}
+                        name="add-circle-outline"
+                        size={32}
+                        color="#4BB0EE" />
+                </TouchableOpacity>
+        ) });
+  
+        
+            return <View >{this.state.tweets.map(tweet =>(<Text>{tweet.author}</Text>))}</View> 
+    }
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -36,5 +42,3 @@ const styles = StyleSheet.create({
       backgroundColor: "#FFF"
     }
   });
-
-  export default Timeline;
