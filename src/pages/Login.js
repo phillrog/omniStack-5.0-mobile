@@ -6,9 +6,10 @@ import {
     TouchableOpacity, 
     View, 
     StyleSheet, 
-    Text,
-    AsyncStorage
+    Text
  } from 'react-native';
+
+ import { AsyncStorage } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -29,7 +30,7 @@ export default class Login extends Component {
 
         await AsyncStorage.setItem('@OmniStack:userName', userName);
 
-        this.props.navigation.navigate("Timeline");
+        this.props.navigation.navigate("App");
     }
 
     async componentDidMount() {
@@ -37,7 +38,7 @@ export default class Login extends Component {
         const userName = await AsyncStorage.getItem('@OmniStack:userName');
 
         if (userName) {
-            this.props.navigation.navigate('Timeline');
+            this.props.navigation.navigate('App');
         }
 
     }
