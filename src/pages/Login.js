@@ -1,11 +1,46 @@
 import React, { Component } from 'react';
 
-import { KeyboardAvoidingView, TextInput, TouchableOpacity, View, StyleSheet, Text } from 'react-native';
+import { 
+    KeyboardAvoidingView, 
+    TextInput, 
+    TouchableOpacity, 
+    View, 
+    StyleSheet, 
+    Text,
+    AsyncStorage
+ } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default class Login extends Component {
+    state = {
+        userName: ''
+    }
+    
+    handleInputChange = (userName) => {
+        this.setState({userName});   
+    }
+
+    handleLogin = async () =>{
+        const { userName } = this.state;
+
+        if (!userName.length) return;
+
+        await AsyncStorage.setItem('@OmniStack:userName', userName);
+
+        this.props.navigation.navigate("Timeline");
+    }
+
+    async componentDidMount() {
+
+        const userName = await AsyncStorage.getItem('@OmniStack:userName');
+
+        if (userName) {
+            this.props.navigation.navigate('Timeline');
+        }
+
+    }
     render(){
         return (
             <KeyboardAvoidingView  
@@ -18,12 +53,14 @@ export default class Login extends Component {
                     <TextInput
                         style={styles.input}
                         placeholder="Nome de usuário"
-                        //value={}
+                        value={this.state.userName}
+                        onChangeText={this.handleInputChange}
+                        onSubmitEditing={this.handleLogin}
                         returnKeyType="send"
                     ></TextInput>
 
                     <TouchableOpacity
-                        onPress={()=>{}}
+                        onPress={()=>{ this.handleLogin}}
                         style={styles.button}
                     >
                         <Text style={styles.buttonText}>Entrar</Text>
