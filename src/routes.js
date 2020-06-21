@@ -5,8 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { 
     View, 
     StyleSheet, 
-    Text
+    TouchableOpacity
  } from 'react-native';
+
+ import Icon from 'react-native-vector-icons/MaterialIcons';
+
 const Stack = createStackNavigator();
 
 import Login from './pages/Login';
@@ -17,8 +20,9 @@ function Routes() {
       <NavigationContainer options={{backgroundColor: "green"}}>
         <Stack.Navigator initialRouteName='Login'
           screenOptions={{
-            gestureEnabled: true,
+            gestureEnabled: false,
             title: "Omni Stack 5.0",
+            headerLeft: null,
             headerTitleAlign: "center",          
           }}>
           <Stack.Screen 
@@ -35,8 +39,7 @@ function Routes() {
             component={Timeline}
             options={{
                 headerStyle: ({ backgroundColor: "#fff"}),
-                headerTintColor: "#008abe",
-                
+                headerTintColor: "#008abe",                
               }}
             />
          </Stack.Navigator>
