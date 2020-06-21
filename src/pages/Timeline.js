@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import  Tweet from '../components/Tweet';
 
 import api from '../services/tweets';
 
@@ -32,9 +34,15 @@ export default class Timeline extends Component {
         ) });
   
         
-            return <View >{this.state.tweets.map(tweet =>(<Text>{tweet.author}</Text>))}</View> 
+            return <View  style={styles.container}>
+                <FlatList
+                    data={this.state.tweets}
+                    keyExtractor={ tweet => tweet._id }
+                    renderItem={({ item }) => <Tweet tweet={item} ></Tweet>}
+                ></FlatList>
+            </View> 
     }
-}
+i0pçoi}
 
 const styles = StyleSheet.create({
     container: {
