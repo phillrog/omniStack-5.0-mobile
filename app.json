@@ -1,4 +1,8 @@
 {
-  "name": "omnistackrn",
-  "displayName": "omnistackrn"
+  "name": "omnistackrn",  
+  "sdkVersion": "31.0.0",    
+  "slug": "omnistackrn",
+  "version": "1.0.0",
+  "description": "Curso Rocetseat Omni STack 5.0 - Mobile",
+  "primaryColor": "#ff8179"
 }
