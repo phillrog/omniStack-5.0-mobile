@@ -24,7 +24,7 @@ export default class Timeline extends Component {
 
         navigation.setOptions({ title: "Início",
             headerRight: () => (
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity onPress={() => navigation.navigate('AppNew')}>
                     <Icon 
                         style={{ marginRight: 20}}
                         name="add-circle-outline"

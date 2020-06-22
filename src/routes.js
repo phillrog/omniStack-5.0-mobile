@@ -14,6 +14,7 @@ const Stack = createStackNavigator();
 
 import Login from './pages/Login';
 import Timeline from './pages/Timeline';
+import New from './pages/New';
 
 function Routes() {
     return (
@@ -38,6 +39,15 @@ function Routes() {
             name='App' 
             component={Timeline}
             options={{
+                headerStyle: ({ backgroundColor: "#fff"}),
+                headerTintColor: "#008abe",                
+              }}
+            />
+          <Stack.Screen 
+            name='AppNew' 
+            component={New}
+            options={{
+                
                 headerStyle: ({ backgroundColor: "#fff"}),
                 headerTintColor: "#008abe",                
               }}
